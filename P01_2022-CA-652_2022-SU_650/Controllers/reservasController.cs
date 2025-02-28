@@ -116,5 +116,36 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
             return Ok(listaSucursal);
         }
 
+
+        /// <summary>
+        /// EndPoint para Mostrar una lista de los espacios reservados 
+        /// entre dos fechas dadas de una sucursal especifica
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="fechaInicio"></param>
+        /// <param name="fechaFin"></param>
+        [HttpGet]
+        [Route("EntreDosFechas/{id}")]
+        public IActionResult EntreDosFechas(int id, DateTime fechaInicio, DateTime fechaFin)
+        {
+            var listaReservas = (from s in _reservaContext.sucursales
+                                 where s.sucursalId == id
+                                 select new
+                                 {
+                                     s.sucursalNombre,
+                                     Reservas = (from e in _reservaContext.espacios
+                                                 join r in _reservaContext.reservas on e.espacioId equals r.espacioId
+                                                 where r.fechaReservacion.Date > fechaInicio
+                                                 && r.fechaReservacion.Date < fechaFin
+                                                 select new
+                                                 {
+                                                     r.reservaId
+                                                 }).ToList()
+                                 }).FirstOrDefault();
+
+            if (listaReservas == null) return NotFound();
+
+            return Ok(listaReservas);
+        }
     }
 }
