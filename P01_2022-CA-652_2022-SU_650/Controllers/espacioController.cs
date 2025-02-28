@@ -33,7 +33,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
             }
         }
 
-        //Actualizar el espacio del  parqueo
+   
         [HttpPut]
         [Route("actualizar/{id}")]
 
@@ -58,7 +58,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
             return Ok(espaciosModificar);
         }
 
-        // eliminar un espacio 
+     
         [HttpDelete]
         [Route("eliminar/{id}")]
 
@@ -77,5 +77,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
             return Ok(espacios);
 
         }
+
+        
     }
 }
