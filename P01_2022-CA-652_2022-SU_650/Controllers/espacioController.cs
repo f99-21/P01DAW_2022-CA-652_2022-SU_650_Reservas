@@ -16,7 +16,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Add")]
         public ActionResult agregar ([FromBody]espacios espacios)
         {
