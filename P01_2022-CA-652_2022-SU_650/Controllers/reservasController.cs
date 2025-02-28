@@ -90,5 +90,31 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
 
         }
 
+        /// <summary>
+        /// EndPoint para mostrar lista de los espacios reservados por día de todas las sucursales.
+        /// </summary>
+        /// <param name="fecha"></param>
+        [HttpGet]
+        [Route("ReservasPorDia")]
+        public IActionResult listarReservasXDia(DateTime fecha)
+        {
+            var listaSucursal = (from s in _reservaContext.sucursales
+                                 select new
+                                 {
+                                     s.sucursalNombre,
+                                     Reservas = (from e in _reservaContext.espacios
+                                                 join r in _reservaContext.reservas on e.espacioId equals r.espacioId
+                                                 where r.fechaReservacion.Date == fecha.Date
+                                                 select new
+                                                 {
+                                                     r.reservaId
+                                                 }).ToList()
+                                 }).ToList();
+
+            if (listaSucursal.Count == 0) return NotFound();
+
+            return Ok(listaSucursal);
+        }
+
     }
 }

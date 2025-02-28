@@ -85,19 +85,19 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         /// <param name="id"></param>
         [HttpPut]
         [Route("actualizar/{id}")]
-        public IActionResult ActualizarUsuario (int id, [FromBody] usuario usuarioModificar)
+        public IActionResult ActualizarUsuario(int id, [FromBody] usuario usuarioModificar)
         {
             usuario? usuarioActual = (from e in _usuarioContex.usuarios
                                       where e.usuarioId == id
                                       select e).FirstOrDefault();
 
             if (usuarioActual == null)
-            { 
+            {
                 return NotFound();
 
             }
 
-            
+
             usuarioActual.nombreUsuario = usuarioModificar.nombreUsuario;
             usuarioActual.correo = usuarioModificar.correo;
             usuarioActual.telefono = usuarioModificar.telefono;
@@ -109,7 +109,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
             _usuarioContex.SaveChanges();
             return NoContent();
 
-            
+
 
         }
 
@@ -119,11 +119,11 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         /// <param name="id"></param>
         [HttpDelete]
         [Route("eliminar/{id}")]
-        public IActionResult Eliminar (int id)
+        public IActionResult Eliminar(int id)
         {
-            usuario? usuaio= (from e in _usuarioContex.usuarios
-                              where e.usuarioId == id   
-                              select e).FirstOrDefault();
+            usuario? usuaio = (from e in _usuarioContex.usuarios
+                               where e.usuarioId == id
+                               select e).FirstOrDefault();
             if (usuaio == null)
             {
                 return NotFound();
@@ -142,7 +142,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         /// <param name="contrasena"></param>
         [HttpGet]
         [Route("VerficarCredenciales/{nombreUsuario}/{contrasena}")]
-        public IActionResult VerificarCredenciales(string nombreUsuario, string contrasena) 
+        public IActionResult VerificarCredenciales(string nombreUsuario, string contrasena)
         {
             usuario? usuario = (from u in _usuarioContex.usuarios
                                 where u.nombreUsuario == nombreUsuario && u.contrasena == contrasena
@@ -152,5 +152,8 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
 
             return Ok("Verificación realizada con exito");
         }
+
+        
+
     }
 }
