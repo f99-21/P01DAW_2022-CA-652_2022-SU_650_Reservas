@@ -33,6 +33,25 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
             }
         }
 
+
+        /// <summary>
+        /// EndPoint para mostrar una lista de espacios de parqueo disponibles para reservar por día
+        /// </summary>
+        /// <param name="fecha"></param>
+        [HttpGet]
+        [Route("ListaDisponibles")]
+        public IActionResult ListaDisponibles(DateTime fecha) 
+        {
+            var espaciosDisponibles = (from e in  _espacioContext.espacios
+                                       where e.disponible == true
+                                       select e).ToList();
+
+            if (espaciosDisponibles.Count() == 0) return NotFound();
+
+            return Ok();
+        }
+
+
         //Actualizar el espacio del  parqueo
         [HttpPut]
         [Route("actualizar/{id}")]
