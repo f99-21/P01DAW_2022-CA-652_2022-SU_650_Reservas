@@ -18,7 +18,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
 
         [HttpGet]
         [Route("Add")]
-        public ActionResult agregar ([FromBody]espacio espacios)
+        public ActionResult agregar ([FromBody]espacios espacios)
         {
             try
             {
@@ -58,9 +58,9 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         [HttpPut]
         [Route("actualizar/{id}")]
 
-        public IActionResult ActualizarEspacio(int id, [FromBody] espacio espaciosModificar)
+        public IActionResult ActualizarEspacio(int id, [FromBody] espacios espaciosModificar)
         {
-            espacio? espacioActual = (from e in _espacioContext.espacios
+            espacios? espacioActual = (from e in _espacioContext.espacios
                                       where e.espacioId == id
                                       select e).FirstOrDefault();
 
@@ -85,7 +85,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
 
         public IActionResult eliminarEpacio(int id)
         {
-            espacio? espacios = (from e in _espacioContext.espacios
+            espacios? espacios = (from e in _espacioContext.espacios
                                  where e.espacioId == id
                                  select e).FirstOrDefault();
             if (espacios == null)

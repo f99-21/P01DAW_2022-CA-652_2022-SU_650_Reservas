@@ -24,7 +24,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         [Route("GetAll")]
         public IActionResult Get()
         {
-            List<usuario> listaUsuario = (from e in _usuarioContex.usuarios
+            List<usuarios> listaUsuario = (from e in _usuarioContex.usuarios
                                           select e).ToList();
 
             if (listaUsuario.Count == 0)
@@ -44,7 +44,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         [Route("GetById/{id}")]
         public IActionResult Get(int id)
         {
-            usuario? usuario = (from e in _usuarioContex.usuarios
+            usuarios? usuario = (from e in _usuarioContex.usuarios
                                 where e.usuarioId == id
                                 select e).FirstOrDefault();
 
@@ -62,7 +62,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         /// </summary>
         [HttpPost]
         [Route("Add")]
-        public IActionResult agregar([FromBody] usuario usuri)
+        public IActionResult agregar([FromBody] usuarios usuri)
         {
             try
             {
@@ -85,9 +85,9 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         /// <param name="id"></param>
         [HttpPut]
         [Route("actualizar/{id}")]
-        public IActionResult ActualizarUsuario(int id, [FromBody] usuario usuarioModificar)
+        public IActionResult ActualizarUsuario(int id, [FromBody] usuarios usuarioModificar)
         {
-            usuario? usuarioActual = (from e in _usuarioContex.usuarios
+            usuarios? usuarioActual = (from e in _usuarioContex.usuarios
                                       where e.usuarioId == id
                                       select e).FirstOrDefault();
 
@@ -121,7 +121,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         [Route("eliminar/{id}")]
         public IActionResult Eliminar(int id)
         {
-            usuario? usuaio = (from e in _usuarioContex.usuarios
+            usuarios? usuaio = (from e in _usuarioContex.usuarios
                                where e.usuarioId == id
                                select e).FirstOrDefault();
             if (usuaio == null)
@@ -144,7 +144,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         [Route("VerficarCredenciales/{nombreUsuario}/{contrasena}")]
         public IActionResult VerificarCredenciales(string nombreUsuario, string contrasena)
         {
-            usuario? usuario = (from u in _usuarioContex.usuarios
+            usuarios? usuario = (from u in _usuarioContex.usuarios
                                 where u.nombreUsuario == nombreUsuario && u.contrasena == contrasena
                                 select u).FirstOrDefault();
 

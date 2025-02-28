@@ -21,7 +21,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         /// </summary>
         [HttpPost]
         [Route("Reservar")]
-        public IActionResult agregarReserva([FromBody] reserva reserva)
+        public IActionResult agregarReserva([FromBody] reservas reserva)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         [Route("Cancelar/{id}")]
         public IActionResult Cancelar(int id) 
         {
-            reserva? reservaCancelar = (from r in _reservaContext.reservas
+            reservas? reservaCancelar = (from r in _reservaContext.reservas
                                         where r.reservaId == id
                                         select r).FirstOrDefault();
 

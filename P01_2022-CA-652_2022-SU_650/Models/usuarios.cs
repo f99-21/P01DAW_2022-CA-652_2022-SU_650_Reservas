@@ -2,7 +2,7 @@
 
 namespace P01_2022_CA_652_2022_SU_650.Models
 {
-    public class usuario
+    public class usuarios
     {
         [Key]
         public int usuarioId { get; set; }

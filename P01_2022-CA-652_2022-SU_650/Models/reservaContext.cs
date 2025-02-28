@@ -11,11 +11,11 @@ namespace P01_2022_CA_652_2022_SU_650.Models
 
         }
 
-        public DbSet<rol> roles { get; set; }
-        public DbSet<usuario> usuarios { get; set; }
-        public DbSet<sucursal> sucursales { get; set; }
-        public DbSet<espacio> espacios { get; set; }
-        public DbSet<reserva> reservas { get; set; }
+        public DbSet<roles> roles { get; set; }
+        public DbSet<usuarios> usuarios { get; set; }
+        public DbSet<sucursales> sucursales { get; set; }
+        public DbSet<espacios> espacios { get; set; }
+        public DbSet<reservas> reservas { get; set; }
 
 
     }

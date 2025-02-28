@@ -2,7 +2,7 @@
 
 namespace P01_2022_CA_652_2022_SU_650.Models
 {
-    public class sucursal
+    public class sucursales
     {
         [Key]
         public int sucursalId { get; set; }

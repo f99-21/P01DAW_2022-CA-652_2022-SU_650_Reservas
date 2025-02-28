@@ -24,7 +24,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         [Route("GetAll")]
         public IActionResult GetSucursales() 
         {
-            List<sucursal> listaSucursales = (from s in _sucursalesContext.sucursales
+            List<sucursales> listaSucursales = (from s in _sucursalesContext.sucursales
                                               select s).ToList();
 
             if (listaSucursales.Count() == 0) return NotFound(); 
@@ -41,7 +41,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         [Route("GetById/{id}")]
         public IActionResult GetById(int id) 
         {
-            sucursal? sucursal = (from s in _sucursalesContext.sucursales
+            sucursales? sucursal = (from s in _sucursalesContext.sucursales
                                   where s.sucursalId == id
                                   select s).FirstOrDefault();
 
@@ -55,7 +55,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         /// </summary>
         [HttpPost]
         [Route("Add")]
-        public IActionResult AddSucursal([FromBody] sucursal sucursal) 
+        public IActionResult AddSucursal([FromBody] sucursales sucursal) 
         {
             try
             {
@@ -75,10 +75,10 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         /// <param name="id"></param>
         [HttpPut]
         [Route("Actualizar/{id}")]
-        public IActionResult ActualizarSucursal(int id, [FromBody] sucursal sucursalModificar) 
+        public IActionResult ActualizarSucursal(int id, [FromBody] sucursales sucursalModificar) 
         {
             // Obtener registro original
-            sucursal? sucursalActual = (from s in _sucursalesContext.sucursales
+            sucursales? sucursalActual = (from s in _sucursalesContext.sucursales
                                         where s.sucursalId == id
                                         select s).FirstOrDefault();
 
@@ -108,7 +108,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         public IActionResult Eliminar(int id) 
         {
             //Obtener el registro original
-            sucursal? sucursal = (from s in _sucursalesContext.sucursales
+            sucursales? sucursal = (from s in _sucursalesContext.sucursales
                                   where s.sucursalId == id
                                   select s).FirstOrDefault();
 
