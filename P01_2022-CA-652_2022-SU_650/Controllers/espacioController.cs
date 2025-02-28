@@ -33,7 +33,49 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
             }
         }
 
-            
-        
+        //Actualizar el espacio del  parqueo
+        [HttpPut]
+        [Route("actualizar/{id}")]
+
+        public IActionResult ActualizarEspacio(int id, [FromBody] espacio espaciosModificar)
+        {
+            espacio? espacioActual = (from e in _espacioContext.espacios
+                                      where e.espacioId == id
+                                      select e).FirstOrDefault();
+
+            if (espacioActual == null)
+            {
+                return NotFound();
+            }
+
+            espacioActual.numeroEspacio = espaciosModificar.numeroEspacio;
+            espacioActual.costoHora = espaciosModificar.costoHora;
+            espacioActual.disponible = espaciosModificar.disponible;
+
+
+            _espacioContext.Entry(espacioActual).State=Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _espacioContext.SaveChanges();
+            return Ok(espaciosModificar);
+        }
+
+        // eliminar un espacio 
+        [HttpDelete]
+        [Route("eliminar/{id}")]
+
+        public IActionResult eliminarEpacio(int id)
+        {
+            espacio? espacios = (from e in _espacioContext.espacios
+                                 where e.espacioId == id
+                                 select e).FirstOrDefault();
+            if (espacios == null)
+            { return NotFound(); }
+
+            _espacioContext.espacios.Attach(espacios);
+            _espacioContext.Remove(espacios);
+            _espacioContext.SaveChanges();
+
+            return Ok(espacios);
+
+        }
     }
 }
