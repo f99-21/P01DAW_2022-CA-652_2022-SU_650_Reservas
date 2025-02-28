@@ -34,15 +34,16 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
         }
 
 
+
         /// <summary>
         /// EndPoint para mostrar una lista de espacios de parqueo disponibles para reservar por día
         /// </summary>
         /// <param name="fecha"></param>
         [HttpGet]
         [Route("ListaDisponibles")]
-        public IActionResult ListaDisponibles(DateTime fecha) 
+        public IActionResult ListaDisponibles(DateTime fecha)
         {
-            var espaciosDisponibles = (from e in  _espacioContext.espacios
+            var espaciosDisponibles = (from e in _espacioContext.espacios
                                        where e.disponible == true
                                        select e).ToList();
 
@@ -53,6 +54,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
 
 
         //Actualizar el espacio del  parqueo
+
         [HttpPut]
         [Route("actualizar/{id}")]
 
@@ -77,7 +79,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
             return Ok(espaciosModificar);
         }
 
-        // eliminar un espacio 
+     
         [HttpDelete]
         [Route("eliminar/{id}")]
 
@@ -96,5 +98,7 @@ namespace P01_2022_CA_652_2022_SU_650.Controllers
             return Ok(espacios);
 
         }
+
+        
     }
 }
