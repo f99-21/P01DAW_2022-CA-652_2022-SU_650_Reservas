@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using P01_2022_CA_652_2022_SU_650.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
